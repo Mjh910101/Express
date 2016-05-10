@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.express.subao.R;
 import com.express.subao.box.handlers.AreaObjHandler;
+import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.fragments.main.MainFrameLayout;
@@ -174,6 +175,14 @@ public class MainActivity extends BaseActivity {
 
         fragmentManager = getFragmentManager();
         setTap(MAIN);
+
+        if (!UserObjHandler.isLigon(context)) {
+            jumpLoginActivity();
+        }
+    }
+
+    private void jumpLoginActivity() {
+        Passageway.jumpActivity(context, LoginDialogActivity.class);
     }
 
 //    private void initAddarss() {

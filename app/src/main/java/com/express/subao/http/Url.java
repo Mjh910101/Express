@@ -5,7 +5,8 @@ public class Url {
     /**
      * 服务器地址ַ
      */
-    private static String RootIndex = "http://dev.sub-ao-app-services.avosapps.com";
+    private static String RootIndex = "http://sub-ao-app-services.leanapp.cn";
+//    private static String RootIndex = "http://dev.sub-ao-app-services.avosapps.com";
 
     public static String getIndex() {
         return RootIndex;
