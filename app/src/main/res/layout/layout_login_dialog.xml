@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginDialog_loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="為了保障包裹信息的安全"
+        android:textColor="@color/text_orange"
+        android:textSize="@dimen/text_size_17" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="需登錄後使用"
+        android:textColor="@color/text_orange"
+        android:textSize="@dimen/text_size_17" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -31,7 +51,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/input_stype_lucency"
             android:hint="@string/input_tel"
+            android:cursorVisible="true"
             android:inputType="number"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_17" />
     </LinearLayout>
 
@@ -54,6 +76,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/input_stype_lucency"
             android:hint="@string/input_password"
+            android:textColor="@color/black"
             android:inputType="textPassword"
             android:textSize="@dimen/text_size_17" />
     </LinearLayout>
@@ -63,15 +86,27 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/login_login"
+            android:id="@+id/login_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="right"
+            android:text="@string/forget_password_nessage"
+            android:textColor="@color/text_orange"
+            android:textSize="@dimen/text_size_15" />
+
+        <TextView
+            android:id="@+id/login_loginBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/login_message"
             android:layout_centerInParent="true"
             android:background="@drawable/orange_box_white_background_btn"
             android:gravity="center"
             android:text="@string/confirm"
             android:textColor="@color/text_orange"
-            android:textSize="@dimen/text_size_20" />
+            android:textSize="@dimen/text_size_17" />
     </RelativeLayout>
 
 </LinearLayout>

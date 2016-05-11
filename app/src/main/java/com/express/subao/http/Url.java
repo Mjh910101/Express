@@ -41,7 +41,7 @@ public class Url {
     }
 
     public static String getSignUpSendVerify() {
-        return getIndex() + "signUp/sendVerify";
+        return getIndex() + "/api/v1/signUp/sendVerify";
     }
 
     public static String getCategory(String id) {
