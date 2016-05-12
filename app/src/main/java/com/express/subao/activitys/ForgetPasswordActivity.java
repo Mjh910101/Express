@@ -6,24 +6,19 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.express.subao.R;
 import com.express.subao.box.handlers.UserObjHandler;
-import com.express.subao.download.DownloadImageLoader;
-import com.express.subao.handlers.ColorHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
-import com.express.subao.tool.Passageway;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
@@ -54,88 +49,56 @@ import org.json.JSONObject;
  * *  ┗┓┓┏━━━┳┓┏┛
  * *   ┃┫┫   ┃┫┫
  * *   ┗┻┛   ┗┻┛
- * Created by Hua on 16/5/10.
+ * Created by Hua on 16/5/12.
  */
-public class LoginDialogActivity extends BaseActivity {
+public class ForgetPasswordActivity extends BaseActivity {
 
-    private final static int LOGIN = R.id.loginDialog_loginBtn;
-    private final static int REGISTER = R.id.loginDialog_registerBtn;
-    public final static int RESULT = 12045;
-
-    @ViewInject(R.id.loginDialog_loginBtn)
-    private TextView loginBtn;
-    @ViewInject(R.id.loginDialog_registerBtn)
-    private TextView registerBtn;
-    @ViewInject(R.id.loginDialog_loginLayout)
-    private LinearLayout loginLayout;
-    @ViewInject(R.id.loginDialog_registerLayout)
-    private LinearLayout registerLayout;
-    @ViewInject(R.id.login_passwordInput)
-    private EditText loginPasswordInput;
-    @ViewInject(R.id.login_telInput)
-    private EditText loginTelInput;
-    @ViewInject(R.id.loginDialog_progress)
+    @ViewInject(R.id.title_back)
+    private ImageView backIcon;
+    @ViewInject(R.id.title_name)
+    private TextView titleName;
+    @ViewInject(R.id.forget_progress)
     private ProgressBar progress;
     @ViewInject(R.id.register_telInput)
-    private EditText registerTelInput;
+    private EditText telInput;
     @ViewInject(R.id.register_passwordInput)
-    private EditText registerPasswordInput;
+    private EditText passwordInput;
     @ViewInject(R.id.register_passwordAgainInput)
-    private EditText registerPasswordAgainInput;
+    private EditText passwordAgainInput;
     @ViewInject(R.id.register_passwordJudge)
     private ImageView passwordJudge;
     @ViewInject(R.id.register_getCode)
     private TextView getCodeText;
     @ViewInject(R.id.register_codeInput)
-    private EditText registerVerifyInput;
+    private EditText verifyInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_dialog);
+        setContentView(R.layout.activity_forget_password);
 
         ViewUtils.inject(this);
 
         initActivity();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            close();
-        }
-        return false;
-    }
-
-    @OnClick({R.id.loginDialog_loginBtn, R.id.loginDialog_registerBtn, R.id.login_loginBtn,
-            R.id.register_registerBtn, R.id.register_getCode, R.id.login_forgetPassword})
+    @OnClick({R.id.title_back, R.id.register_registerBtn, R.id.register_getCode})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.loginDialog_loginBtn:
-            case R.id.loginDialog_registerBtn:
-                onType(view.getId());
-                break;
-            case R.id.login_loginBtn:
-                login();
+            case R.id.title_back:
+                finish();
                 break;
             case R.id.register_registerBtn:
-                register();
+                forget();
                 break;
             case R.id.register_getCode:
                 getSmsCode();
                 break;
-            case R.id.login_forgetPassword:
-                jumpForgetActivity();
-                break;
         }
     }
 
-    private void jumpForgetActivity() {
-        Passageway.jumpActivity(context, ForgetPasswordActivity.class);
-    }
-
     private void setTextChangedListener() {
-        registerPasswordAgainInput.addTextChangedListener(new TextWatcher() {
+        passwordAgainInput.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2,
@@ -150,8 +113,8 @@ public class LoginDialogActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable arg0) {
                 passwordJudge.setVisibility(View.VISIBLE);
-                if (registerPasswordInput.getText().toString()
-                        .equals(registerPasswordAgainInput.getText().toString())) {
+                if (passwordInput.getText().toString()
+                        .equals(passwordAgainInput.getText().toString())) {
                     passwordJudge.setImageResource(R.drawable.password_true);
                 } else {
                     passwordJudge.setImageResource(R.drawable.password_flase);
@@ -160,78 +123,33 @@ public class LoginDialogActivity extends BaseActivity {
         });
     }
 
-    private void onType(int type) {
-        initType();
-        switch (type) {
-            case LOGIN:
-                loginBtn.setBackgroundResource(R.color.whitle);
-                loginBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
-                loginLayout.setVisibility(View.VISIBLE);
-                break;
-            case REGISTER:
-                registerBtn.setBackgroundResource(R.color.whitle);
-                registerBtn.setTextColor(ColorHandler.getColorForID(context, R.color.text_orange));
-                registerLayout.setVisibility(View.VISIBLE);
-                break;
-        }
-    }
-
-    private void initType() {
-        loginBtn.setBackgroundResource(R.color.text_orange);
-        registerBtn.setBackgroundResource(R.color.text_orange);
-
-        loginBtn.setTextColor(ColorHandler.getColorForID(context, R.color.whitle));
-        registerBtn.setTextColor(ColorHandler.getColorForID(context, R.color.whitle));
-
-        loginLayout.setVisibility(View.GONE);
-        registerLayout.setVisibility(View.GONE);
-    }
-
     private void initActivity() {
+        backIcon.setVisibility(View.VISIBLE);
+        titleName.setText(TextHandeler.getText(context, R.string.forget_password));
+
         setTextChangedListener();
-        onType(LOGIN);
     }
 
-    private void login() {
-        if (isLoginCommit()) {
-            submitLogin();
+    private void forget() {
+        if (isForgetCommit()) {
+            submitForget();
         }
     }
 
-    private boolean isLoginCommit() {
-        if (TextHandeler.getText(loginTelInput).equals("")) {
-            MessageHandler.showToast(context,
-                    getResources().getString(R.string.tel_not_null));
-            return false;
-        }
-        if (TextHandeler.getText(loginPasswordInput).equals("")) {
-            MessageHandler.showToast(context,
-                    getResources().getString(R.string.pass_not_null));
-            return false;
-        }
-        return true;
-    }
-
-    private void register() {
-        if (isRegisterCommit()) {
-            submitRegister();
-        }
-    }
-
-    public boolean isRegisterCommit() {
-        if (TextHandeler.getText(registerTelInput).equals("")) {
+    public boolean isForgetCommit() {
+        if (TextHandeler.getText(telInput).equals("")) {
             MessageHandler.showToast(context,
                     getResources().getString(R.string.tel_not_null));
             return false;
         }
 
-        if (TextHandeler.getText(registerPasswordInput).equals("")) {
+        if (TextHandeler.getText(passwordInput).equals("")) {
             MessageHandler.showToast(context,
                     getResources().getString(R.string.pass_not_null));
             return false;
         }
-        if (TextHandeler.getText(registerPasswordInput).length() < 6
-                || TextHandeler.getText(registerPasswordInput).length() > 20) {
+        if (TextHandeler.getText(passwordInput).length() < 6
+                || TextHandeler.getText(passwordInput).length() > 20) {
             MessageHandler.showToast(context,
                     getResources().getString(R.string.pass_length));
             return false;
@@ -239,55 +157,14 @@ public class LoginDialogActivity extends BaseActivity {
         return true;
     }
 
-    private void submitLogin() {
+    public void submitForget() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getLogin();
+        String url = Url.getForgotReset();
 
         RequestParams params = HttpUtilsBox.getRequestParams(context);
-        params.addBodyParameter("mobile", loginTelInput.getText().toString());
-        params.addBodyParameter("password", loginPasswordInput.getText().toString());
-
-        HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
-                new RequestCallBack<String>() {
-
-                    @Override
-                    public void onFailure(HttpException exception, String msg) {
-                        progress.setVisibility(View.GONE);
-                        MessageHandler.showFailure(context);
-                    }
-
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        progress.setVisibility(View.GONE);
-                        String result = responseInfo.result;
-                        Log.d("", result);
-
-                        JSONObject json = JsonHandle.getJSON(result);
-                        if (json != null) {
-                            JSONObject resultsJson = JsonHandle.getJSON(json, "results");
-                            if (JsonHandle.getInt(json, "status") == 1) {
-                                UserObjHandler.saveUserObj(context, UserObjHandler.getUserObj(resultsJson));
-                                finish();
-                            } else {
-                                MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
-                            }
-
-                        }
-                    }
-
-                });
-    }
-
-    public void submitRegister() {
-        progress.setVisibility(View.VISIBLE);
-
-        String url = Url.getSignUp();
-
-        RequestParams params = HttpUtilsBox.getRequestParams(context);
-        params.addBodyParameter("mobile", TextHandeler.getText(registerTelInput));
-        params.addBodyParameter("password", TextHandeler.getText(registerPasswordInput));
-        params.addBodyParameter("verify", TextHandeler.getText(registerVerifyInput));
+        params.addBodyParameter("password", TextHandeler.getText(passwordInput));
+        params.addBodyParameter("verify", TextHandeler.getText(verifyInput));
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
                 new RequestCallBack<String>() {
@@ -324,10 +201,10 @@ public class LoginDialogActivity extends BaseActivity {
     private void getSmsCode() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getSignUpSendVerify();
+        String url = Url.getForgotSendVerify();
 
         RequestParams params = HttpUtilsBox.getRequestParams(context);
-        params.addBodyParameter("mobile", TextHandeler.getText(registerTelInput));
+        params.addBodyParameter("mobile", TextHandeler.getText(telInput));
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
                 new RequestCallBack<String>() {
@@ -382,7 +259,7 @@ public class LoginDialogActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             int time = msg.what;
-            getCodeText.setText(String.valueOf(time)+"秒");
+            getCodeText.setText(String.valueOf(time) + "秒");
             if (time == 0) {
                 getCodeText
                         .setText(TextHandeler.getText(context, R.string.get_code));
@@ -391,11 +268,5 @@ public class LoginDialogActivity extends BaseActivity {
         }
 
     };
-
-
-    private void close() {
-        setResult(RESULT);
-        finish();
-    }
 
 }

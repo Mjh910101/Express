@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loginDialog_loginLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="270dp"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <TextView
         android:layout_width="fill_parent"
@@ -50,8 +50,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/input_stype_lucency"
-            android:hint="@string/input_tel"
             android:cursorVisible="true"
+            android:hint="@string/input_tel"
+            android:textColorHint="@color/text_gray_02"
             android:inputType="number"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_17" />
@@ -76,8 +77,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/input_stype_lucency"
             android:hint="@string/input_password"
-            android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
             android:inputType="textPassword"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_17" />
     </LinearLayout>
 
@@ -86,7 +88,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/login_message"
+            android:id="@+id/login_forgetPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -100,7 +102,7 @@
             android:id="@+id/login_loginBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/login_message"
+            android:layout_below="@id/login_forgetPassword"
             android:layout_centerInParent="true"
             android:background="@drawable/orange_box_white_background_btn"
             android:gravity="center"

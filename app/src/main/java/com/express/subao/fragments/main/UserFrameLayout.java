@@ -26,6 +26,7 @@ import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.fragments.BaseFragment;
 import com.express.subao.handlers.TextHandeler;
+import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
 import com.express.subao.tool.WinTool;
 import com.lidroid.xutils.ViewUtils;
@@ -92,13 +93,13 @@ public class UserFrameLayout extends BaseFragment {
         Bundle b = new Bundle();
         switch (view.getId()) {
             case R.id.user_item_help:
-                b.putString(WebActivity.URL, "http://dev.sub-ao-app-services.avosapps.com/html/12.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/12.html");
                 break;
             case R.id.user_item_about:
-                b.putString(WebActivity.URL, "http://dev.sub-ao-app-services.avosapps.com/html/22.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/22.html");
                 break;
             case R.id.user_item_inviteFriendsBox:
-                b.putString(WebActivity.URL, "http://dev.sub-ao-app-services.avosapps.com/html/23.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/23.html");
                 break;
         }
         Passageway.jumpActivity(context, WebActivity.class, b);
@@ -148,9 +149,9 @@ public class UserFrameLayout extends BaseFragment {
             logoutBtn.setVisibility(View.VISIBLE);
             compileBox.setVisibility(View.VISIBLE);
             loginBox.setVisibility(View.GONE);
-            userName.setText(TextHandeler.getText(context, R.string.welcome_user_text).replace("?", "JamesBond"));
+//            userName.setText(TextHandeler.getText(context, R.string.welcome_user_text).replace("?", "JamesBond"));
             DownloadImageLoader.loadImageForID(usetPic, R.drawable.james_bond_icon, WinTool.dipToPx(context, 30));
-//            userName.setText(TextHandeler.getText(context, R.string.welcome_user_text).replace("?", UserObjHandler.getUserName(context)));
+            userName.setText(TextHandeler.getText(context, R.string.welcome_user_text).replace("?", UserObjHandler.getUserName(context)));
         } else {
             loginMessage.setVisibility(View.GONE);
             logoutBtn.setVisibility(View.GONE);

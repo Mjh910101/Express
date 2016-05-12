@@ -170,16 +170,16 @@ public class MainFrameLayoutV2 extends BaseFragment {
         Bundle b = new Bundle();
         switch (view.getId()) {
             case R.id.main_tellFriend:
-                b.putString(WebActivity.URL, "http://dev.sub-ao-app-services.avosapps.com/html/11.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/11.html");
                 break;
             case R.id.main_getExpress:
-                b.putString(WebActivity.URL, "http://dev.sub-ao-app-services.avosapps.com/html/12.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/12.html");
                 break;
             case R.id.main_callMe:
-                b.putString(WebActivity.URL, "http://dev.sub-ao-app-services.avosapps.com/html/14.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/14.html");
                 break;
             case R.id.main_boxAddress:
-                b.putString(WebActivity.URL, "http://dev.sub-ao-app-services.avosapps.com/html/15.html");
+                b.putString(WebActivity.URL, Url.getIndex() + "/html/15.html");
                 break;
         }
         Passageway.jumpActivity(context, WebActivity.class, b);
@@ -199,7 +199,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
     private void downloadData() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = "http://dev.sub-ao-app-services.avosapps.com/api/v1/slider";
+        String url = Url.getIndex() + "/api/v1/slider";
 //        String url = Url.getHomeUrl(AreaObjHandler.getAreaName(context));
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,

@@ -102,9 +102,12 @@ public class ExpresContentActivity extends BaseActivity {
     }
 
     private void jumpCheckActivity() {
+//        Bundle b = new Bundle();
+//        b.putString(CheckExpressActivity.CODE_KEY, mExpresObj.getExpreser().getExpress_id());
+//        Passageway.jumpActivity(context, CheckExpressActivity.class, b);
         Bundle b = new Bundle();
-        b.putString(CheckExpressActivity.CODE_KEY, mExpresObj.getExpreser().getExpress_id());
-        Passageway.jumpActivity(context, CheckExpressActivity.class, b);
+        b.putString(WebActivity.URL, "https://m.baidu.com/from=1013665e/s?word=" + mExpresObj.getExpreser().getCompanyInfo().getName() + "快递" + mExpresObj.getExpreser().getExpress_id());
+        Passageway.jumpActivity(context, WebActivity.class, b);
     }
 
     private void initActivity() {

@@ -10,6 +10,7 @@
     <color name="activity_bg">#f6f2e6</color>
     <color name="text_orange">#f8b500</color>
     <color name="text_gray_01">#666666</color>
+    <color name="text_gray_02">#999999</color>
     <color name="yellow">#fed158</color>
     <color name="yellow_01">#fff0c7</color>
     <color name="green">#4caf50</color>

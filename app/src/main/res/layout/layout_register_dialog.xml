@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loginDialog_registerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="270dp"
     android:orientation="vertical"
     android:visibility="visible">
 
@@ -30,6 +30,7 @@
             android:hint="@string/input_tel"
             android:inputType="number"
             android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
             android:textSize="@dimen/text_size_17" />
     </RelativeLayout>
 
@@ -72,6 +73,7 @@
             android:layout_toRightOf="@id/register_codeInputIcon"
             android:background="@drawable/input_stype_lucency"
             android:hint="@string/input_code"
+            android:textColorHint="@color/text_gray_02"
             android:textSize="@dimen/text_size_17" />
     </RelativeLayout>
 
@@ -99,6 +101,7 @@
             android:hint="@string/input_password"
             android:inputType="textPassword"
             android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
             android:textSize="@dimen/text_size_17" />
     </RelativeLayout>
 
@@ -136,6 +139,7 @@
             android:hint="@string/input_password_again"
             android:inputType="textPassword"
             android:textColor="@color/black"
+            android:textColorHint="@color/text_gray_02"
             android:textSize="@dimen/text_size_17" />
     </RelativeLayout>
 

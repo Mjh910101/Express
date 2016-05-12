@@ -111,6 +111,11 @@ public class MainActivity extends BaseActivity {
             case ModifyUserActivity.REQUEST_CODE:
                 refreshActivity();
                 break;
+            case LoginDialogActivity.RESULT:
+                if (!UserObjHandler.isLigon(context)) {
+                    finish();
+                }
+                break;
         }
 
 
@@ -182,7 +187,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void jumpLoginActivity() {
-        Passageway.jumpActivity(context, LoginDialogActivity.class);
+        Passageway.jumpActivity(context, LoginDialogActivity.class, LoginDialogActivity.RESULT);
     }
 
 //    private void initAddarss() {

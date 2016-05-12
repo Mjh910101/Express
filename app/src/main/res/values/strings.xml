@@ -13,7 +13,7 @@
     <string name="area_text">地區選擇</string>
     <string name="welcome_text">歡迎你</string>
     <string name="welcome_user_text">用戶?，歡迎您</string>
-    <string name="login_text">登陸</string>
+    <string name="login_text">登錄</string>
     <string name="register_text">註冊</string>
     <string name="new_register_text">新用戶註冊</string>
     <string name="compile_myself">編輯個人資料</string>
@@ -29,13 +29,13 @@
     <string name="logout_text">退出</string>
     <string name="input_password_again">請再次輸入密碼</string>
     <string name="input_password">請輸入密碼</string>
-    <string name="input_tel">請輸入電話號碼</string>
+    <string name="input_tel">請輸入手機號碼</string>
     <string name="max_image">您最多只能選擇</string>
     <string name="tel_not_null">手機號碼不能為空</string>
     <string name="pass_not_null">密碼不能為空</string>
     <string name="code_not_null">驗證碼不能為空</string>
     <string name="pass_length">密碼長度需6-20位</string>
-    <string name="phone_message">請確認您的電話號碼，我們將發送驗證碼短信到這個號碼</string>
+    <string name="phone_message">請確認您的手機號碼，我們將發送驗證碼短信到這個號碼</string>
     <string name="confirm">確定</string>
     <string name="query">查詢</string>
     <string name="cancel">取消</string>
@@ -48,7 +48,7 @@
     <string name="look_look">先看看</string>
     <string name="forget_password">忘記密碼</string>
     <string name="forget_password_nessage">忘記密碼?!</string>
-    <string name="input_forget_tel">輸入註冊時使用的電話號碼</string>
+    <string name="input_forget_tel">輸入註冊時使用的手機號碼</string>
     <string name="sacnning_text">掃描</string>
     <string name="detailed_text">詳情</string>
     <string name="box_express_text">此箱內的待取快件</string>
