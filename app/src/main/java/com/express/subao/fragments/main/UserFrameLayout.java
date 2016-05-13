@@ -1,5 +1,6 @@
 package com.express.subao.fragments.main;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.PushService;
 import com.express.subao.R;
 import com.express.subao.activitys.CollectionActivity;
 import com.express.subao.activitys.ExpressListActivity;
@@ -118,8 +121,7 @@ public class UserFrameLayout extends BaseFragment {
                 Passageway.jumpActivity(context, LoginActivity.class, LoginActivity.REQUEST_CODE);
                 break;
             case R.id.user_logoutBtn:
-                UserObjHandler.deleteUser(context);
-                isLogin();
+                logout();
                 break;
             case R.id.user_compileBox:
                 Passageway.jumpActivity(context, ModifyUserActivity.class, ModifyUserActivity.REQUEST_CODE);
@@ -140,6 +142,15 @@ public class UserFrameLayout extends BaseFragment {
 //                Passageway.jumpActivity(context, ShareFriendsActivity.class);
 //                break;
         }
+    }
+
+    private void logout() {
+        PushService.unsubscribe(context, UserObjHandler.getUserTel(context));
+        PushService.unsubscribe(context, UserObjHandler.getUserId(context));
+        AVInstallation.getCurrentInstallation().saveInBackground();//退订之后需要重新保存 Installation
+        UserObjHandler.deleteUser(context);
+        ((Activity) (context)).finish();
+//                isLogin();
     }
 
     public void isLogin() {

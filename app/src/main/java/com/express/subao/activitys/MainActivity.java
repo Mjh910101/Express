@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.PushService;
+import com.avos.avoscloud.SaveCallback;
 import com.express.subao.R;
 import com.express.subao.box.handlers.AreaObjHandler;
 import com.express.subao.box.handlers.UserObjHandler;
@@ -114,6 +118,8 @@ public class MainActivity extends BaseActivity {
             case LoginDialogActivity.RESULT:
                 if (!UserObjHandler.isLigon(context)) {
                     finish();
+                } else {
+                    initPush();
                 }
                 break;
         }
@@ -183,7 +189,24 @@ public class MainActivity extends BaseActivity {
 
         if (!UserObjHandler.isLigon(context)) {
             jumpLoginActivity();
+        } else {
+            initPush();
         }
+    }
+
+    private void initPush() {
+        AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    PushService.setDefaultPushCallback(context, MainActivity.class);
+                    PushService.subscribe(context, UserObjHandler.getUserTel(context), MainActivity.class);
+                    PushService.subscribe(context, UserObjHandler.getUserId(context), MainActivity.class);
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void jumpLoginActivity() {

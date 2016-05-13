@@ -80,4 +80,12 @@ public class UserObjHandler {
     public static String getUserName(Context context) {
         return SystemHandle.getString(context,KEY+UserObj.USER_NAME);
     }
+
+    public static String getUserTel(Context context) {
+        return SystemHandle.getString(context,KEY+UserObj.USER_NAME);
+    }
+
+    public static String getUserId(Context context) {
+        return SystemHandle.getString(context,KEY+UserObj.OBJECT_ID);
+    }
 }
