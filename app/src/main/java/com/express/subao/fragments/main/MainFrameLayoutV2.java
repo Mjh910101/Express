@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 
 import com.express.subao.R;
 import com.express.subao.activitys.BoxExpressListActivity;
+import com.express.subao.activitys.BoxMapActivity;
 import com.express.subao.activitys.OrdinaryWebActivity;
 import com.express.subao.activitys.QueryExpressActivity;
 import com.express.subao.activitys.TopUpActivity;
@@ -179,10 +180,15 @@ public class MainFrameLayoutV2 extends BaseFragment {
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/14.html");
                 break;
             case R.id.main_boxAddress:
-                b.putString(WebActivity.URL, Url.getIndex() + "/html/15.html");
-                break;
+//                b.putString(WebActivity.URL, Url.getIndex() + "/html/15.html");
+                jumpMapActivity();
+                return;
         }
         Passageway.jumpActivity(context, WebActivity.class, b);
+    }
+
+    private void jumpMapActivity() {
+        Passageway.jumpActivity(context, BoxMapActivity.class);
     }
 
 

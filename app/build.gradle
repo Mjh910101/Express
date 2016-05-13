@@ -47,7 +47,7 @@ dependencies {
     //avoscloud-sdk 为 LeanCloud基础包
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
     //avoscloud-push 为推送与实时聊天需要的包
-//    compile('cn.leancloud.android:avoscloud-push:v3.+@aar') { transitive = true }
+    //    compile('cn.leancloud.android:avoscloud-push:v3.+@aar') { transitive = true }
     compile files('libs/universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar')
     compile files('libs/xUtils-2.6.14.jar')
     compile files('libs/zxing.jar')
@@ -59,4 +59,5 @@ dependencies {
     compile files('libs/okhttp-2.6.0-leancloud.jar')
     compile files('libs/okio-1.6.0-leancloud.jar')
     compile files('libs/protobuf-java-2.6.1.jar')
+    compile files('libs/BaiduLBS_Android.jar')
 }

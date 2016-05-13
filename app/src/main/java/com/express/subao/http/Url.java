@@ -75,4 +75,8 @@ public class Url {
     public static String getItem(String id) {
         return getIndex() + "/api/v1/store/" + id + "/items";
     }
+
+    public static String getSdyBoxes() {
+        return getIndex() + "/api/v1/sdy/boxes";
+    }
 }
