@@ -46,6 +46,8 @@ public class ModifyUserActivity extends BaseActivity {
     private TextView titleName;
     @ViewInject(R.id.modifyUser_userTel)
     private TextView userTel;
+    @ViewInject(R.id.title_saveText)
+    private TextView saveText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class ModifyUserActivity extends BaseActivity {
 
     private void initActivity() {
         backIcon.setVisibility(View.VISIBLE);
+        saveText.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.compile_myself));
         userTel.setText(UserObjHandler.getUserName(context));
     }

@@ -2,6 +2,7 @@ package com.express.subao.client;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -24,7 +25,7 @@ public class MyWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         // view.loadUrl(url);// 如果不需要其他对点击链接事件的处理返回true，否则返回false
-
+        Log.e("MyWebViewClient", url);
         Bundle b = new Bundle();
         b.putString(WebActivity.URL, url);
         b.putString(WebActivity.TITLE, "");

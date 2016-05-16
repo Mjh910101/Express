@@ -147,6 +147,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/user_item_push"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/whitle"
@@ -177,7 +178,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="8dp"
-            android:button="@drawable/push_sype" />
+            android:button="@drawable/push_sype"
+            android:clickable="false" />
     </RelativeLayout>
 
     <View

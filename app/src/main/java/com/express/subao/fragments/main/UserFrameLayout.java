@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -73,6 +74,8 @@ public class UserFrameLayout extends BaseFragment {
     private TextView userName;
     @ViewInject(R.id.user_usetPic)
     private ImageView usetPic;
+    @ViewInject(R.id.user_item_pushSwitch)
+    private RadioButton pushSwitch;
 
 
     @Override
@@ -111,7 +114,7 @@ public class UserFrameLayout extends BaseFragment {
 
     @OnClick({R.id.user_registerBtn, R.id.user_loginBtn, R.id.user_logoutBtn, R.id.user_compileBox,
             R.id.user_item_feedbackBox, R.id.user_item_collectionBox, R.id.user_remainingMoneyBox,
-            R.id.user_item_subaoBox})
+            R.id.user_item_subaoBox, R.id.user_item_push})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.user_registerBtn:
@@ -141,7 +144,15 @@ public class UserFrameLayout extends BaseFragment {
 //            case R.id.user_item_inviteFriendsBox:
 //                Passageway.jumpActivity(context, ShareFriendsActivity.class);
 //                break;
+            case R.id.user_item_push:
+                onClickPush();
+                break;
         }
+    }
+
+    private void onClickPush() {
+        boolean b = pushSwitch.isChecked();
+        pushSwitch.setChecked(!b);
     }
 
     private void logout() {
