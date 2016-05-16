@@ -35,12 +35,18 @@
                     android:layout_centerVertical="true"
                     android:src="@drawable/right_icon" />
 
-                <ImageView
-                    android:id="@+id/modifyUser_pic"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_toLeftOf="@+id/modifyUser_picRight"
-                    android:src="@drawable/user_pic" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/modifyUser_picRight">
+
+                    <ImageView
+                        android:id="@+id/modifyUser_pic"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/user_pic" />
+
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,6 +131,13 @@
             </RelativeLayout>
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/modifyUser_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

@@ -308,7 +308,7 @@ public class LoginDialogActivity extends BaseActivity {
                         if (json != null) {
                             JSONObject resultsJson = JsonHandle.getJSON(json, "results");
                             if (JsonHandle.getInt(json, "status") == 1) {
-                                UserObjHandler.saveUserObj(UserObjHandler.getUserObj(resultsJson));
+                                UserObjHandler.saveUserObj(context,UserObjHandler.getUserObj(resultsJson));
                                 finish();
                             } else {
                                 MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));

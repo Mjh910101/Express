@@ -72,6 +72,10 @@ public class DownloadImageLoader {
         loadImage(mImageView, "file://" + url, 0);
     }
 
+    public static void loadImageForFile(ImageView mImageView, String url, int p) {
+        loadImage(mImageView, "file://" + url, p);
+    }
+
     public static void loadImageForFile(ImageView mImageView, String url,
                                         ImageLoadingListener mImageLoadingListener) {
         loadImage(mImageView, "file://" + url, 0, mImageLoadingListener);

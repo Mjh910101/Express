@@ -172,8 +172,8 @@ public class UserFrameLayout extends BaseFragment {
             compileBox.setVisibility(View.VISIBLE);
             loginBox.setVisibility(View.GONE);
 //            userName.setText(TextHandeler.getText(context, R.string.welcome_user_text).replace("?", "JamesBond"));
-            DownloadImageLoader.loadImageForID(usetPic, R.drawable.james_bond_icon, WinTool.dipToPx(context, 30));
             userName.setText(TextHandeler.getText(context, R.string.welcome_user_text).replace("?", UserObjHandler.getUserName(context)));
+            UserObjHandler.setUserAvatar(context, usetPic, WinTool.dipToPx(context, 30));
         } else {
             loginMessage.setVisibility(View.GONE);
             logoutBtn.setVisibility(View.GONE);

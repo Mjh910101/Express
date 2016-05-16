@@ -79,4 +79,8 @@ public class Url {
     public static String getSdyBoxes() {
         return getIndex() + "/api/v1/sdy/boxes";
     }
+
+    public static String getUserModify() {
+        return getIndex() + "/api/v1/user/modify";
+    }
 }
