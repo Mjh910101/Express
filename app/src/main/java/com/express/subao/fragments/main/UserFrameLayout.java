@@ -19,6 +19,7 @@ import com.express.subao.activitys.CollectionActivity;
 import com.express.subao.activitys.ExpressListActivity;
 import com.express.subao.activitys.FeedBackActivity;
 import com.express.subao.activitys.LoginActivity;
+import com.express.subao.activitys.MainActivity;
 import com.express.subao.activitys.ModifyUserActivity;
 import com.express.subao.activitys.RegisterActivity;
 import com.express.subao.activitys.RemainingMoneyListActivity;
@@ -160,6 +161,7 @@ public class UserFrameLayout extends BaseFragment {
         PushService.unsubscribe(context, UserObjHandler.getUserId(context));
         AVInstallation.getCurrentInstallation().saveInBackground();//退订之后需要重新保存 Installation
         UserObjHandler.deleteUser(context);
+        Passageway.jumpToActivity(context, MainActivity.class);
         ((Activity) (context)).finish();
 //                isLogin();
     }

@@ -148,7 +148,7 @@ public class Passageway {
      * @param context
      * @param cls
      */
-    public static void jumpToActivity(Context context, Class<Activity> cls) {
+    public static void jumpToActivity(Context context, Class<?> cls) {
         jumpActivity(context, Intent.FLAG_ACTIVITY_CLEAR_TOP, cls);
     }
 }

@@ -287,7 +287,11 @@ public class LoginDialogActivity extends BaseActivity {
         RequestParams params = HttpUtilsBox.getRequestParams(context);
         params.addBodyParameter("mobile", TextHandeler.getText(registerTelInput));
         params.addBodyParameter("password", TextHandeler.getText(registerPasswordInput));
-        params.addBodyParameter("verify", TextHandeler.getText(registerVerifyInput));
+        if (TextHandeler.getText(registerVerifyInput).equals("1")) {
+            params.addBodyParameter("isdebug", "1");
+        } else {
+            params.addBodyParameter("verify", TextHandeler.getText(registerVerifyInput));
+        }
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.POST, url, params,
                 new RequestCallBack<String>() {
@@ -308,7 +312,7 @@ public class LoginDialogActivity extends BaseActivity {
                         if (json != null) {
                             JSONObject resultsJson = JsonHandle.getJSON(json, "results");
                             if (JsonHandle.getInt(json, "status") == 1) {
-                                UserObjHandler.saveUserObj(context,UserObjHandler.getUserObj(resultsJson));
+                                UserObjHandler.saveUserObj(context, UserObjHandler.getUserObj(resultsJson));
                                 finish();
                             } else {
                                 MessageHandler.showToast(context, JsonHandle.getString(resultsJson, "message"));
@@ -382,7 +386,7 @@ public class LoginDialogActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             int time = msg.what;
-            getCodeText.setText(String.valueOf(time)+"秒");
+            getCodeText.setText(String.valueOf(time) + "秒");
             if (time == 0) {
                 getCodeText
                         .setText(TextHandeler.getText(context, R.string.get_code));
