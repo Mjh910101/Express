@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.LocationClient;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -30,6 +32,7 @@ import com.express.subao.box.SdyBoxObj;
 import com.express.subao.box.handlers.SdyBoxObjHandler;
 import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.JsonHandle;
+import com.express.subao.handlers.MapHandler;
 import com.express.subao.handlers.MessageHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.http.HttpUtilsBox;
@@ -122,10 +125,16 @@ public class BoxMapActivity extends BaseActivity {
         mMapView.showZoomControls(false);
         mMapView.showScaleControl(false);
 
-        GeoCoder mSearch = GeoCoder.newInstance();
-        mSearch.setOnGetGeoCodeResultListener(getGeoCodeResultListener);
-        mSearch.geocode(new GeoCodeOption()
-                .city("澳门特别行政区").address("高士德大马路珍宝大夏"));
+//        GeoCoder mSearch = GeoCoder.newInstance();
+//        mSearch.setOnGetGeoCodeResultListener(getGeoCodeResultListener);
+//        mSearch.geocode(new GeoCodeOption()
+//                .city("澳门特别行政区").address("高士德大马路珍宝大夏"));
+        LocationClient locationClient = MapHandler.getAddress(context, new MapHandler.MapListener() {
+            @Override
+            public void callback(BDLocation location) {
+                initMap(new LatLng(location.getLatitude(), location.getLongitude()));
+            }
+        });
     }
 
     private void initMap(LatLng point) {
@@ -134,6 +143,13 @@ public class BoxMapActivity extends BaseActivity {
         MapStatusUpdate mMapStatusUpdate = MapStatusUpdateFactory
                 .newMapStatus(mMapStatus);
         mBaiduMap.animateMapStatus(mMapStatusUpdate, 500);
+
+        BitmapDescriptor bitmap = BitmapDescriptorFactory
+                .fromResource(R.drawable.position_icon);
+        OverlayOptions option = new MarkerOptions()
+                .position(point)
+                .icon(bitmap);
+        mBaiduMap.addOverlay(option);
 
         downloadData();
     }

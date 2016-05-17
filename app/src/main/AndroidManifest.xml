@@ -26,6 +26,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -156,9 +158,14 @@
         </receiver>
 
         <!--百度定位-->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="MNLRV2VEwRkEHmcaadq6Sc43Qzc3v6s2" />
+
     </application>
 
 </manifest>
