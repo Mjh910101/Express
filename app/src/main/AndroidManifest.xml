@@ -147,6 +147,9 @@
         <activity
             android:name=".activitys.SdyboxContentaActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.SdyOrderContentActivity"
+            android:screenOrientation="portrait" />
 
         <!--推送-->
         <service

@@ -11,8 +11,12 @@ import android.widget.TextView;
 
 import com.express.subao.R;
 import com.express.subao.adaptera.QueryExpresAdaper;
+import com.express.subao.adaptera.SdyOrderAdaper;
 import com.express.subao.box.ExpresObj;
+import com.express.subao.box.SdyOrderObj;
 import com.express.subao.box.handlers.ExpresObjHandler;
+import com.express.subao.box.handlers.SdyOrderObjHandler;
+import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.handlers.ColorHandler;
 import com.express.subao.handlers.JsonHandle;
 import com.express.subao.handlers.MessageHandler;
@@ -80,8 +84,10 @@ public class BoxExpressListActivity extends BaseActivity {
     @ViewInject(R.id.boxExpress_receovedDataText)
     private TextView receovedDataText;
 
-    private List<ExpresObj> notReceivedList;
-    private List<ExpresObj> receivedList;
+    private List<SdyOrderObj> notReceivedList;
+    private List<SdyOrderObj> receivedList;
+
+    private int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +114,8 @@ public class BoxExpressListActivity extends BaseActivity {
         backIcon.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.box_in_express_text));
 
-        notReceivedList = new ArrayList<ExpresObj>();
-        receivedList = new ArrayList<ExpresObj>();
+        notReceivedList = new ArrayList<SdyOrderObj>();
+        receivedList = new ArrayList<SdyOrderObj>();
 
         setTitleListSize();
     }
@@ -134,24 +140,24 @@ public class BoxExpressListActivity extends BaseActivity {
         }
     }
 
-    private void finishingList(List<ExpresObj> list) {
-        for (ExpresObj obj : list) {
-            if (obj.getStatus() == 1) {
-                receivedList.add(obj);
-            } else {
+    private void finishingList(List<SdyOrderObj> list) {
+        for (SdyOrderObj obj : list) {
+            if (obj.getStatus().equals("1")) {
                 notReceivedList.add(obj);
+            } else {
+                receivedList.add(obj);
             }
         }
         setTitleListSize();
 
-        receovedDataList.setAdapter(new QueryExpresAdaper(context, receivedList, true));
-        notReceovedDataList.setAdapter(new QueryExpresAdaper(context, notReceivedList, true));
+        receovedDataList.setAdapter(new SdyOrderAdaper(context, receivedList));
+        notReceovedDataList.setAdapter(new SdyOrderAdaper(context, notReceivedList));
     }
 
     private void downloadData() {
         progress.setVisibility(View.VISIBLE);
 
-        String url = Url.getExpress();
+        String url = Url.getUserOrder() + "?sessiontoken=" + UserObjHandler.getSessionToken(context) + "&page=" + page + "&limit=10";
 
         HttpUtilsBox.getHttpUtil().send(HttpMethod.GET, url,
                 new RequestCallBack<String>() {
@@ -174,7 +180,7 @@ public class BoxExpressListActivity extends BaseActivity {
                             if (JsonHandle.getInt(json, "status") == 1) {
                                 JSONArray array = JsonHandle.getArray(json, "results");
                                 if (array != null) {
-                                    List<ExpresObj> list = ExpresObjHandler.getExpresObjList(array);
+                                    List<SdyOrderObj> list = SdyOrderObjHandler.getSdyOrderObjList(array);
                                     finishingList(list);
                                 }
                             }

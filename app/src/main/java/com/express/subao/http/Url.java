@@ -68,6 +68,10 @@ public class Url {
         return getIndex() + "/api/v1/express";
     }
 
+    public static String getUserOrder() {
+        return getIndex() + "/api/v1/user/order";
+    }
+
     public static String getItemTag(String id) {
         return getIndex() + "/api/v1/store/" + id + "/itemtag";
     }
