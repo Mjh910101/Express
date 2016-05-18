@@ -55,8 +55,19 @@ public class SdyBoxObjHandler {
         if (point != null) {
             obj.setPoint(JsonHandle.getDouble(point, "latitude"), JsonHandle.getDouble(point, "longitude"));
         }
+        obj.setCover(JsonHandle.getJSON(json, "cover"));
 
         return obj;
+    }
+
+    private static SdyBoxObj mSdyBoxObj;
+
+    public static void saveSdyBoxObj(SdyBoxObj obj) {
+        mSdyBoxObj = obj;
+    }
+
+    public static SdyBoxObj getSdyBoxObj() {
+        return mSdyBoxObj;
     }
 
 }

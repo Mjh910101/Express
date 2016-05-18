@@ -5,26 +5,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.express.subao.R;
 import com.express.subao.activitys.BoxExpressListActivity;
-import com.express.subao.activitys.BoxMapActivity;
-import com.express.subao.activitys.OrdinaryWebActivity;
-import com.express.subao.activitys.QueryExpressActivity;
-import com.express.subao.activitys.TopUpActivity;
+import com.express.subao.activitys.SdyboxMapActivity;
 import com.express.subao.activitys.WebActivity;
-import com.express.subao.adaptera.CategoryAdapter;
-import com.express.subao.adaptera.HelpAdapter;
-import com.express.subao.box.CategoryObj;
-import com.express.subao.box.HelpObj;
 import com.express.subao.box.SliderObj;
-import com.express.subao.box.handlers.AreaObjHandler;
-import com.express.subao.box.handlers.CategoryObjHandler;
-import com.express.subao.box.handlers.HelpObjHandler;
 import com.express.subao.box.handlers.SliderObjHandler;
 import com.express.subao.fragments.BaseFragment;
 import com.express.subao.handlers.JsonHandle;
@@ -33,7 +22,6 @@ import com.express.subao.http.HttpUtilsBox;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
 import com.express.subao.tool.WinTool;
-import com.express.subao.views.InsideGridView;
 import com.express.subao.views.InsideViewFlipper;
 import com.express.subao.views.SliderView;
 import com.lidroid.xutils.ViewUtils;
@@ -188,7 +176,7 @@ public class MainFrameLayoutV2 extends BaseFragment {
     }
 
     private void jumpMapActivity() {
-        Passageway.jumpActivity(context, BoxMapActivity.class);
+        Passageway.jumpActivity(context, SdyboxMapActivity.class);
     }
 
 

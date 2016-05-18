@@ -142,7 +142,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity
-            android:name=".activitys.BoxMapActivity"
+            android:name=".activitys.SdyboxMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.SdyboxContentaActivity"
             android:screenOrientation="portrait" />
 
         <!--推送-->

@@ -2,6 +2,9 @@ package com.express.subao.box;
 
 import com.baidu.mapapi.model.LatLng;
 import com.express.subao.R;
+import com.express.subao.handlers.JsonHandle;
+
+import org.json.JSONObject;
 
 /**
  * *
@@ -32,6 +35,17 @@ public class SdyBoxObj {
     private String createdAt;
     private String updatedAt;
     private LatLng point;
+    private String cover;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(JSONObject json) {
+        if (json != null) {
+            this.cover = JsonHandle.getString(json, "url");
+        }
+    }
 
     public String getAddress() {
         return address;
