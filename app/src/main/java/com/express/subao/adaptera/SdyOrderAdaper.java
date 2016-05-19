@@ -112,9 +112,10 @@ public class SdyOrderAdaper extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SdyOrderObjHandler.saveSdyOrder(obj);
+//                SdyOrderObjHandler.saveSdyOrder(obj);
                 Bundle b = new Bundle();
                 b.putBoolean("isShowMob", false);
+                b.putString(SdyOrderObj.SDY_ORDER_ID, obj.getSdy_order_id());
                 Passageway.jumpActivity(context, SdyOrderContentActivity.class, b);
             }
         });

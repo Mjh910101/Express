@@ -40,7 +40,7 @@ public class SdyOrderObjHandler {
         return list;
     }
 
-    private static SdyOrderObj getSdyOrderObj(JSONObject json) {
+    public static SdyOrderObj getSdyOrderObj(JSONObject json) {
         SdyOrderObj obj = new SdyOrderObj();
 
         obj.setObjectId(JsonHandle.getString(json, SdyOrderObj.OBJECT_ID));

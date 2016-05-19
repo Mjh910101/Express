@@ -87,4 +87,8 @@ public class Url {
     public static String getUserModify() {
         return getIndex() + "/api/v1/user/modify";
     }
+
+    public static String getUserOrderDetail() {
+        return getUserOrder()+"/detail";
+    }
 }
