@@ -51,7 +51,7 @@ public class SdyBoxAdapter extends BaseAdapter {
     private AddressListener mAddressListener;
 
 
-    public SdyBoxAdapter(Context context, List<SdyBoxObj> itemList,AddressListener listener) {
+    public SdyBoxAdapter(Context context, List<SdyBoxObj> itemList, AddressListener listener) {
         initBaseAdapter(context);
         this.itemList = itemList;
         this.mAddressListener = listener;
@@ -88,6 +88,7 @@ public class SdyBoxAdapter extends BaseAdapter {
 
             holder.title = (TextView) convertView.findViewById(R.id.sdybox_title);
             holder.address = (TextView) convertView.findViewById(R.id.sdybox_address);
+            holder.contentText = (TextView) convertView.findViewById(R.id.sdybox_contentText);
             holder.pic = (ImageView) convertView.findViewById(R.id.sdybox_icon);
 
             convertView.setTag(holder);
@@ -97,18 +98,17 @@ public class SdyBoxAdapter extends BaseAdapter {
 
         SdyBoxObj obj = itemList.get(position);
         setView(holder, obj);
-        setOnClickPic(holder.pic, obj);
+        setOnClickContentText(holder.contentText, obj);
         serOnClick(convertView, obj);
         return convertView;
     }
 
-    private void setOnClickPic(ImageView view, final SdyBoxObj obj) {
+    private void setOnClickContentText(TextView view, final SdyBoxObj obj) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAddressListener != null && obj.getPoint() != null) {
-                    mAddressListener.onAddress(obj.getPoint());
-                }
+                SdyBoxObjHandler.saveSdyBoxObj(obj);
+                Passageway.jumpActivity(context, SdyboxContentaActivity.class);
             }
         });
     }
@@ -117,8 +117,9 @@ public class SdyBoxAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SdyBoxObjHandler.saveSdyBoxObj(obj);
-                Passageway.jumpActivity(context, SdyboxContentaActivity.class);
+                if (mAddressListener != null && obj.getPoint() != null) {
+                    mAddressListener.onAddress(obj.getPoint());
+                }
             }
         });
     }
@@ -131,6 +132,7 @@ public class SdyBoxAdapter extends BaseAdapter {
     class HolderView {
         TextView title;
         TextView address;
+        TextView contentText;
         ImageView pic;
     }
 

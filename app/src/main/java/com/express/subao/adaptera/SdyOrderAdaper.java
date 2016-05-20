@@ -16,6 +16,7 @@ import com.express.subao.activitys.SdyOrderContentActivity;
 import com.express.subao.box.SdyOrderObj;
 import com.express.subao.box.handlers.SdyOrderObjHandler;
 import com.express.subao.download.DownloadImageLoader;
+import com.express.subao.handlers.ColorHandle;
 import com.express.subao.interfaces.CallbackForString;
 import com.express.subao.tool.Passageway;
 import com.express.subao.tool.WinTool;
@@ -94,6 +95,7 @@ public class SdyOrderAdaper extends BaseAdapter {
             holder.statusStr = (TextView) convertView.findViewById(R.id.query_express_item_statusStr);
             holder.companyName = (TextView) convertView.findViewById(R.id.query_express_item_companyName);
             holder.code = (TextView) convertView.findViewById(R.id.query_express_item_code);
+            holder.codeText = (TextView) convertView.findViewById(R.id.query_express_item_codeText);
 
             convertView.setTag(holder);
         } else {
@@ -140,9 +142,13 @@ public class SdyOrderAdaper extends BaseAdapter {
 
         switch (obj.getStatus()) {
             case "1":
-                holder.code.setText("開箱碼 " + obj.getOpen_code());
+                holder.codeText.setVisibility(View.VISIBLE);
+                holder.code.setTextColor(ColorHandle.getColorForID(context, R.color.green));
+                holder.code.setText("" + obj.getOpen_code());
                 break;
             default:
+                holder.codeText.setVisibility(View.GONE);
+                holder.code.setTextColor(ColorHandle.getColorForID(context, R.color.black));
                 holder.code.setText(obj.getPickup_time());
                 break;
         }
@@ -159,6 +165,7 @@ public class SdyOrderAdaper extends BaseAdapter {
         ImageView img;
         TextView companyName;
         TextView code;
+        TextView codeText;
         TextView statusStr;
     }
 

@@ -78,7 +78,7 @@ import java.util.List;
  */
 public class SdyboxMapActivity extends BaseActivity {
 
-    private final static int MAPZOOM = 14;
+    private final static int MAPZOOM = 18;
 
     @ViewInject(R.id.title_back)
     private ImageView backIcon;

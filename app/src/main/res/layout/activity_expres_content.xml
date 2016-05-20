@@ -96,13 +96,28 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/expres_content_verify"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="verify"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/text_size_17" />
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="開箱碼："
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/text_size_16" />
+
+                                <TextView
+                                    android:id="@+id/expres_content_verify"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="verify"
+                                    android:textColor="@color/green"
+                                    android:textSize="@dimen/text_size_17" />
+
+                            </LinearLayout>
+
 
                             <TextView
                                 android:id="@+id/expres_content_tips"

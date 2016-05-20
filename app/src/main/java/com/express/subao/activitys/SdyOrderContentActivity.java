@@ -151,7 +151,7 @@ public class SdyOrderContentActivity extends BaseActivity {
 
         switch (obj.getStatus()) {
             case "1":
-                contentVerify.setText("開箱碼：" + obj.getOpen_code());
+                contentVerify.setText(obj.getOpen_code());
                 contentTips.setVisibility(View.VISIBLE);
                 break;
             default:
