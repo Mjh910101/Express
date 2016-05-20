@@ -16,7 +16,7 @@ public class MapHandler {
         public void callback(BDLocation location);
     }
 
-    public static LocationClient getAddress(Context context, final MapListener callback) {
+    public static LocationClient getAddress(final Context context, final MapListener callback) {
         final LocationClient locationClient = new LocationClient(context);
         LocationClientOption option = getLocationClientOption();
         locationClient.setLocOption(option);
@@ -28,6 +28,9 @@ public class MapHandler {
                     Log.e("baidu", "lat: " + location.getLatitude() + "    lon : "
                             + location.getLongitude() + "      add : " + location.getAddrStr());
                     callback.callback(location);
+                    if (location.getAddrStr() == null || location.getAddrStr().equals("null")) {
+                        MessageHandler.showToast(context,"请检查是否开启GPS");
+                    }
                 }
                 locationClient.stop();
             }

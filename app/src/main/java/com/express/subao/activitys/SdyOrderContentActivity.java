@@ -142,12 +142,12 @@ public class SdyOrderContentActivity extends BaseActivity {
     public void setMessageView(SdyOrderObj obj) {
         contentPrice.setText("MOB");
         contentTips.setText("");
-        contentArea.setText("位置：");
+        contentArea.setText("位置：" + obj.getBoxAddress());
         contentPart.setText("");
-        contentCode.setText("編號：");
+        contentCode.setText("編號：" + obj.getBoxDeviceId());
         contentCompanyName.setText("快递单号 : " + obj.getMailno());
         contentPostman.setText("快遞員 : " + obj.getMailman());
-        contentExpressAt.setText("投件時間 : "  + obj.getCreatedAt());
+        contentExpressAt.setText("投件時間 : " + obj.getCreatedAt());
 
         switch (obj.getStatus()) {
             case "1":

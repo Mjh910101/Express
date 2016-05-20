@@ -42,7 +42,7 @@ public class SdyBoxObjHandler {
         return list;
     }
 
-    private static SdyBoxObj getSdyBoxObj(JSONObject json) {
+    public static SdyBoxObj getSdyBoxObj(JSONObject json) {
         SdyBoxObj obj = new SdyBoxObj();
 
         obj.setObjectId(JsonHandle.getString(json, "objectId"));
@@ -56,6 +56,7 @@ public class SdyBoxObjHandler {
             obj.setPoint(JsonHandle.getDouble(point, "latitude"), JsonHandle.getDouble(point, "longitude"));
         }
         obj.setCover(JsonHandle.getJSON(json, "cover"));
+        obj.setDevice_id(JsonHandle.getString(json, "device_id"));
 
         return obj;
     }

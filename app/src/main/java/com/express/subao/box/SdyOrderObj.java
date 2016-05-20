@@ -35,6 +35,7 @@ public class SdyOrderObj {
     public final static String CREATED_AT = "createdAt";
     public final static String UPDATED_AT = "updatedAt";
     public final static String PICKUP_TIMR = "pickup_time";
+    public final static String DEVICE_ID = "device_id";
 
     private int fee;
     private String mailman;
@@ -48,6 +49,34 @@ public class SdyOrderObj {
     private String createdAt;
     private String updatedAt;
     private String pickup_time;
+    private String device_id;
+    private SdyBoxObj boxObj;
+
+    public String getBoxDeviceId(){
+        if(boxObj==null){
+            return "";
+        }
+        return boxObj.getDevice_id();
+    }
+
+    public String getBoxAddress() {
+        if (boxObj == null) {
+            return "";
+        }
+        return boxObj.getAddress();
+    }
+
+    public void setBoxObj(SdyBoxObj boxObj) {
+        this.boxObj = boxObj;
+    }
+
+    public String getDevice_id() {
+        return device_id;
+    }
+
+    public void setDevice_id(String device_id) {
+        this.device_id = device_id;
+    }
 
     public String getPickup_time() {
         return pickup_time;

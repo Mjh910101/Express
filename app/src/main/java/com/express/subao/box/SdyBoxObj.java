@@ -36,6 +36,15 @@ public class SdyBoxObj {
     private String updatedAt;
     private LatLng point;
     private String cover;
+    private String device_id;
+
+    public String getDevice_id() {
+        return device_id;
+    }
+
+    public void setDevice_id(String device_id) {
+        this.device_id = device_id;
+    }
 
     public String getCover() {
         return cover;

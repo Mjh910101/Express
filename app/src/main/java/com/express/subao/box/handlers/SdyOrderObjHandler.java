@@ -55,6 +55,12 @@ public class SdyOrderObjHandler {
         obj.setStatus(JsonHandle.getString(json, SdyOrderObj.STATUS));
         obj.setUpdatedAt(JsonHandle.getString(json, SdyOrderObj.UPDATED_AT));
         obj.setPickup_time(JsonHandle.getString(json, SdyOrderObj.PICKUP_TIMR));
+        obj.setDevice_id(JsonHandle.getString(json, SdyOrderObj.DEVICE_ID));
+
+        JSONObject boxJson=JsonHandle.getJSON(json,"box");
+        if(boxJson!=null){
+            obj.setBoxObj(SdyBoxObjHandler.getSdyBoxObj(boxJson));
+        }
 
         return obj;
     }

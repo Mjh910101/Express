@@ -2,11 +2,13 @@ package com.express.subao.activitys;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.express.subao.R;
@@ -83,11 +85,13 @@ public class BoxExpressListActivity extends BaseActivity {
     private TextView notReceovedDataText;
     @ViewInject(R.id.boxExpress_receovedDataText)
     private TextView receovedDataText;
+    @ViewInject(R.id.boxExpress_scroll)
+    private ScrollView scroll;
 
     private List<SdyOrderObj> notReceivedList;
     private List<SdyOrderObj> receivedList;
 
-    private int page = 1;
+    private int page = 1, pages = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +102,45 @@ public class BoxExpressListActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         initActivity();
+        setOnTouchListener();
         downloadData();
+    }
+
+    private void setOnTouchListener() {
+        scroll.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        int scrollY = v.getScrollY();
+                        int height = v.getHeight();
+                        int scrollViewMeasuredHeight = scroll.getChildAt(0).getMeasuredHeight();
+                        if (scrollY == 0) {
+                            Log.e("", "滑动到了顶端 view.getScrollY()=" + scrollY);
+                        }
+                        if ((scrollY + height) == scrollViewMeasuredHeight) {
+                            Log.e("", "滑动到了底部 scrollY=" + scrollY);
+                            Log.e("", "滑动到了底部 height=" + height);
+                            Log.e("", "滑动到了底部 scrollViewMeasuredHeight=" + scrollViewMeasuredHeight);
+                            if (pages >= page) {
+                                if (progress.getVisibility() == View.GONE) {
+                                    downloadData();
+                                }
+                            } else {
+                                MessageHandler.showLast(context);
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+                return false;
+            }
+        });
     }
 
     @OnClick({R.id.title_back})
@@ -176,15 +218,15 @@ public class BoxExpressListActivity extends BaseActivity {
 
                         JSONObject json = JsonHandle.getJSON(result);
                         if (json != null) {
-
                             if (JsonHandle.getInt(json, "status") == 1) {
                                 JSONArray array = JsonHandle.getArray(json, "results");
                                 if (array != null) {
                                     List<SdyOrderObj> list = SdyOrderObjHandler.getSdyOrderObjList(array);
                                     finishingList(list);
+                                    page += 1;
                                 }
+                                pages = JsonHandle.getInt(json, "pages");
                             }
-
                         }
                     }
 
