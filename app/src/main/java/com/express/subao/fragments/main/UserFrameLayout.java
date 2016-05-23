@@ -30,6 +30,7 @@ import com.express.subao.adaptera.ExpresAdaper;
 import com.express.subao.box.handlers.UserObjHandler;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.fragments.BaseFragment;
+import com.express.subao.handlers.PushHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.http.Url;
 import com.express.subao.tool.Passageway;
@@ -92,6 +93,7 @@ public class UserFrameLayout extends BaseFragment {
                 false);
         ViewUtils.inject(this, contactsLayout);
         isLogin();
+        initPushBtn();
         return contactsLayout;
     }
 
@@ -153,13 +155,24 @@ public class UserFrameLayout extends BaseFragment {
 
     private void onClickPush() {
         boolean b = pushSwitch.isChecked();
-        pushSwitch.setChecked(!b);
+        if (b) {
+            PushHandler.stopPush(context);
+        } else {
+            PushHandler.startPush(context);
+        }
+        initPushBtn();
+    }
+
+    private void initPushBtn() {
+        if (PushHandler.isStop(context)) {
+            pushSwitch.setChecked(false);
+        } else {
+            pushSwitch.setChecked(true);
+        }
     }
 
     private void logout() {
-        PushService.unsubscribe(context, UserObjHandler.getUserTel(context));
-        PushService.unsubscribe(context, UserObjHandler.getUserId(context));
-        AVInstallation.getCurrentInstallation().saveInBackground();//退订之后需要重新保存 Installation
+        PushHandler.stopPush(context);
         UserObjHandler.deleteUser(context);
         Passageway.jumpToActivity(context, MainActivity.class);
         ((Activity) (context)).finish();

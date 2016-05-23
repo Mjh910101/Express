@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
 import com.express.subao.R;
@@ -25,11 +29,14 @@ import com.express.subao.fragments.main.ShoppingCarFrameLayout;
 import com.express.subao.fragments.main.UserFrameLayout;
 import com.express.subao.handlers.ColorHandler;
 import com.express.subao.handlers.MessageHandler;
+import com.express.subao.handlers.PushHandler;
 import com.express.subao.handlers.TextHandeler;
 import com.express.subao.tool.Passageway;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import java.util.List;
 
 
 public class MainActivity extends BaseActivity {
@@ -195,18 +202,36 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initPush() {
+        PushService.setDefaultPushCallback(context, MainActivity.class);
+        if (!PushHandler.isStop(context)) {
+            PushHandler.startPush(context);
+        }
         AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
                 if (e == null) {
-                    PushService.setDefaultPushCallback(context, MainActivity.class);
-                    PushService.subscribe(context, UserObjHandler.getUserTel(context), MainActivity.class);
-                    PushService.subscribe(context, UserObjHandler.getUserId(context), MainActivity.class);
+                    Log.e("", "设备id: " + AVInstallation.getCurrentInstallation().getInstallationId());
+                    AVQuery pushQuery = AVInstallation.getQuery();
+                    pushQuery.whereEqualTo("installationId", AVInstallation.getCurrentInstallation().getInstallationId());
+                    pushQuery.findInBackground(new FindCallback<AVObject>() {
+                        @Override
+                        public void done(List<AVObject> list, AVException e) {
+                            if (list != null) {
+                                for (AVObject obj : list) {
+                                    Log.e("channels", "" + obj.getJSONObject("channels").toString());
+                                }
+                            } else {
+                                Log.e("", "list is null");
+                            }
+                        }
+                    });
                 } else {
                     e.printStackTrace();
                 }
             }
         });
+
+
     }
 
     private void jumpLoginActivity() {
