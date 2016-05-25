@@ -154,7 +154,7 @@ public class BoxExpressListActivity extends BaseActivity {
 
     private void initActivity() {
         backIcon.setVisibility(View.VISIBLE);
-        titleName.setText(TextHandeler.getText(context, R.string.box_in_express_text));
+        titleName.setText(TextHandeler.getText(context, R.string.open_box_text));
 
         notReceivedList = new ArrayList<SdyOrderObj>();
         receivedList = new ArrayList<SdyOrderObj>();

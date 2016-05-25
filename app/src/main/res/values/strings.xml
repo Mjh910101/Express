@@ -25,7 +25,7 @@
     <string name="user_help_text">幫助</string>
     <string name="user_feedback_text">問題反饋</string>
     <string name="user_about_us_text">關於我們</string>
-    <string name="user_invite_friends_text">邀請好用使用速寶物</string>
+    <string name="user_invite_friends_text">邀請好友使用速寶物</string>
     <string name="logout_text">退出</string>
     <string name="box_map_text">箱體地址</string>
     <string name="input_password_again">請再次輸入密碼</string>
@@ -52,8 +52,10 @@
     <string name="input_forget_tel">輸入註冊時使用的手機號碼</string>
     <string name="sacnning_text">掃描</string>
     <string name="detailed_text">詳情</string>
+    <string name="sdy_detailed_text">箱體詳細</string>
     <string name="box_express_text">此箱內的待取快件</string>
     <string name="box_in_express_text">箱體快件</string>
+    <string name="open_box_text">開箱取件</string>
     <string name="open_text">付費開箱</string>
     <string name="need_money_text">需繳費</string>
     <string name="pay_way_text">請選擇付費方式</string>

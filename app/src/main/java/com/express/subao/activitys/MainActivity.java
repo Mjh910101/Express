@@ -211,20 +211,20 @@ public class MainActivity extends BaseActivity {
             public void done(AVException e) {
                 if (e == null) {
                     Log.e("", "设备id: " + AVInstallation.getCurrentInstallation().getInstallationId());
-                    AVQuery pushQuery = AVInstallation.getQuery();
-                    pushQuery.whereEqualTo("installationId", AVInstallation.getCurrentInstallation().getInstallationId());
-                    pushQuery.findInBackground(new FindCallback<AVObject>() {
-                        @Override
-                        public void done(List<AVObject> list, AVException e) {
-                            if (list != null) {
-                                for (AVObject obj : list) {
-                                    Log.e("channels", "" + obj.getJSONObject("channels").toString());
-                                }
-                            } else {
-                                Log.e("", "list is null");
-                            }
-                        }
-                    });
+//                    AVQuery pushQuery = AVInstallation.getQuery();
+//                    pushQuery.whereEqualTo("installationId", AVInstallation.getCurrentInstallation().getInstallationId());
+//                    pushQuery.findInBackground(new FindCallback<AVObject>() {
+//                        @Override
+//                        public void done(List<AVObject> list, AVException e) {
+//                            if (list != null) {
+//                                for (AVObject obj : list) {
+//                                    Log.e("channels", "" + obj.getJSONObject("channels").toString());
+//                                }
+//                            } else {
+//                                Log.e("", "list is null");
+//                            }
+//                        }
+//                    });
                 } else {
                     e.printStackTrace();
                 }

@@ -52,8 +52,8 @@ public class SdyOrderObj {
     private String device_id;
     private SdyBoxObj boxObj;
 
-    public String getBoxDeviceId(){
-        if(boxObj==null){
+    public String getBoxDeviceId() {
+        if (boxObj == null) {
             return "";
         }
         return boxObj.getDevice_id();
@@ -95,6 +95,9 @@ public class SdyOrderObj {
     }
 
     public String getMailman() {
+        if (mailman == null || mailman.equals("null")) {
+            return "";
+        }
         return mailman;
     }
 
@@ -159,6 +162,9 @@ public class SdyOrderObj {
     }
 
     public String getCreatedAt() {
+        if (createdAt == null || createdAt.equals("null")) {
+            return "";
+        }
         return createdAt;
     }
 

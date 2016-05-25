@@ -70,7 +70,7 @@ public class SdyboxContentaActivity extends BaseActivity {
 
     private void initActivity() {
         backIcon.setVisibility(View.VISIBLE);
-        titleName.setText(TextHandeler.getText(context, R.string.box_map_text));
+        titleName.setText(TextHandeler.getText(context, R.string.sdy_detailed_text));
 
         SdyBoxObj obj = SdyBoxObjHandler.getSdyBoxObj();
         if (obj != null) {

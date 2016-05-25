@@ -92,6 +92,8 @@ public class SdyOrderAdaper extends BaseAdapter {
             holder = new HolderView();
 
             holder.img = (ImageView) convertView.findViewById(R.id.query_express_item_img);
+            holder.companyIcon = (ImageView) convertView.findViewById(R.id.query_express_item_companyIcon);
+            holder.codeIcon = (ImageView) convertView.findViewById(R.id.query_express_item_codeIcon);
             holder.statusStr = (TextView) convertView.findViewById(R.id.query_express_item_statusStr);
             holder.companyName = (TextView) convertView.findViewById(R.id.query_express_item_companyName);
             holder.code = (TextView) convertView.findViewById(R.id.query_express_item_code);
@@ -128,7 +130,7 @@ public class SdyOrderAdaper extends BaseAdapter {
 //        holder.companyName.setText(obj.getExpreser().getCompanyInfo().getName() + " " + obj.getExpreser().getExpress_id());
         holder.statusStr.setVisibility(View.VISIBLE);
         holder.img.setVisibility(View.GONE);
-        holder.statusStr.setText(obj.getStatus());
+        holder.statusStr.setText("待取件");
         switch (obj.getStatus()) {
             case "1":
                 holder.statusStr.setBackgroundResource(R.color.green);
@@ -145,11 +147,15 @@ public class SdyOrderAdaper extends BaseAdapter {
                 holder.codeText.setVisibility(View.VISIBLE);
                 holder.code.setTextColor(ColorHandle.getColorForID(context, R.color.green));
                 holder.code.setText("" + obj.getOpen_code());
+                holder.companyIcon.setImageResource(R.drawable.sdy_code_green_icon);
+                holder.codeIcon.setImageResource(R.drawable.open_code_green_icon);
                 break;
             default:
                 holder.codeText.setVisibility(View.GONE);
                 holder.code.setTextColor(ColorHandle.getColorForID(context, R.color.black));
                 holder.code.setText(obj.getPickup_time());
+                holder.companyIcon.setImageResource(R.drawable.sdy_code_gray_icon);
+                holder.codeIcon.setImageResource(R.drawable.time_code_gray_icon);
                 break;
         }
     }
@@ -164,6 +170,8 @@ public class SdyOrderAdaper extends BaseAdapter {
     class HolderView {
         ImageView img;
         TextView companyName;
+        ImageView companyIcon;
+        ImageView codeIcon;
         TextView code;
         TextView codeText;
         TextView statusStr;

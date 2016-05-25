@@ -102,6 +102,7 @@ public class UserFrameLayout extends BaseFragment {
         Bundle b = new Bundle();
         switch (view.getId()) {
             case R.id.user_item_help:
+                b.putString(WebActivity.TITLE, "幫助");
                 b.putString(WebActivity.URL, Url.getIndex() + "/html/12.html");
                 break;
             case R.id.user_item_about:

@@ -72,18 +72,21 @@ public class WebActivity extends BaseActivity {
 
         content.getSettings().setJavaScriptEnabled(true);
         content.setWebViewClient(new MyWebViewClient(context));
-        content.setWebChromeClient(new MyWebChromeClient(
-                new CallbackForString() {
-
-                    @Override
-                    public void callback(String result) {
-                        titleName.setText(result);
-                    }
-                }));
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
-            titleName.setText(b.getString(TITLE));
+            String t = b.getString(TITLE);
+            if (t == null || t.equals("null") || t.equals("")) {
+                content.setWebChromeClient(new MyWebChromeClient(
+                        new CallbackForString() {
+                            @Override
+                            public void callback(String result) {
+                                titleName.setText(result);
+                            }
+                        }));
+            } else {
+                titleName.setText(t);
+            }
             content.loadUrl(b.getString(URL));
         } else {
             finish();

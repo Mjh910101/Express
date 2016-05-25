@@ -126,7 +126,7 @@ public class SdyOrderContentActivity extends BaseActivity {
 
     private void initActivity() {
         backIcon.setVisibility(View.VISIBLE);
-        titleName.setText(TextHandeler.getText(context, R.string.detailed_text));
+        titleName.setText(TextHandeler.getText(context, R.string.sdy_detailed_text));
 
         Bundle b = getIntent().getExtras();
         if (b != null) {

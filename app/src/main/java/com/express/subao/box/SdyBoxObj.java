@@ -39,6 +39,9 @@ public class SdyBoxObj {
     private String device_id;
 
     public String getDevice_id() {
+        if (device_id == null || device_id.equals("null")) {
+            return "";
+        }
         return device_id;
     }
 
@@ -57,6 +60,9 @@ public class SdyBoxObj {
     }
 
     public String getAddress() {
+        if (address == null || address.equals("null")) {
+            return "";
+        }
         return address;
     }
 
