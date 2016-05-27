@@ -24,6 +24,7 @@ import com.express.subao.dialogs.MessageDialog;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.fragments.main.MainFrameLayout;
 import com.express.subao.fragments.main.MainFrameLayoutV2;
+import com.express.subao.fragments.main.MainFrameLayoutV3;
 import com.express.subao.fragments.main.RebateFrameLayout;
 import com.express.subao.fragments.main.ShoppingCarFrameLayout;
 import com.express.subao.fragments.main.UserFrameLayout;
@@ -76,7 +77,7 @@ public class MainActivity extends BaseActivity {
     @ViewInject(R.id.main_tap_userText)
     private TextView userText;
 
-    private MainFrameLayoutV2 mainFrameLayout;
+    private MainFrameLayoutV3 mainFrameLayout;
     private RebateFrameLayout rebateFrameLayout;
     private ShoppingCarFrameLayout shoppingCarFrameLayout;
     private UserFrameLayout userFrameLayout;
@@ -178,8 +179,8 @@ public class MainActivity extends BaseActivity {
                 setTap(REBATE);
                 break;
             case R.id.main_tap_shoppingCarBox:
-//                setTap(SHOPPING_CAR);
-                showBanDialog();
+                setTap(SHOPPING_CAR);
+//                showBanDialog();
                 break;
             case R.id.main_tap_userBox:
                 setTap(USER);
@@ -313,7 +314,7 @@ public class MainActivity extends BaseActivity {
 //        scanningIcon.setVisibility(View.VISIBLE);
         titleIcon.setVisibility(View.VISIBLE);
         if (mainFrameLayout == null) {
-            mainFrameLayout = new MainFrameLayoutV2();
+            mainFrameLayout = new MainFrameLayoutV3();
             transaction.add(R.id.main_content, mainFrameLayout);
         } else {
             transaction.show(mainFrameLayout);

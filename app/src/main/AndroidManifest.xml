@@ -150,6 +150,9 @@
         <activity
             android:name=".activitys.SdyOrderContentActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.StoreItemListActivity"
+            android:screenOrientation="portrait" />
 
         <!--推送-->
         <service
