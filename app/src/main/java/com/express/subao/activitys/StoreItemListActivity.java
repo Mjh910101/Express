@@ -147,9 +147,9 @@ public class StoreItemListActivity extends BaseActivity {
                 Log.e("", "position : " + position[0] + " , " + position[1]);
                 Log.e("", "position : " + pic.getWidth() + " , " + pic.getHeight());
                 Log.e("", "x : " + (position[1] - 166 + pic.getHeight()));
-                if (position[1] - 166 + pic.getHeight() > 1 && isDispatchScroll) {
+                if (position[1] - 166 + pic.getHeight() > 1 || isDispatchScroll) {
                     scroll.dispatchTouchEvent(event);
-//                    isDispatchScroll = false;
+                    isDispatchScroll = false;
                 } else {
                     listLayout.dispatchTouchEvent(event);
                 }

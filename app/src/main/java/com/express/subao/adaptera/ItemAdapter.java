@@ -11,11 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.express.subao.R;
+import com.express.subao.activitys.StoreItemContentActivity;
 import com.express.subao.box.ItemObj;
 import com.express.subao.box.RebateObj;
 import com.express.subao.download.DownloadImageLoader;
 import com.express.subao.handlers.ColorHandler;
 import com.express.subao.interfaces.CallbackForString;
+import com.express.subao.tool.Passageway;
 import com.express.subao.tool.WinTool;
 
 import java.util.List;
@@ -107,8 +109,17 @@ public class ItemAdapter extends BaseAdapter {
         }
         ItemObj obj = itemList.get(position);
         setView(holder, obj);
-
+        setOnClick(convertView, obj);
         return convertView;
+    }
+
+    private void setOnClick(View view, ItemObj obj) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Passageway.jumpActivity(context, StoreItemContentActivity.class);
+            }
+        });
     }
 
     private void setView(HolderView holder, ItemObj obj) {

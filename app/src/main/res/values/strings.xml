@@ -75,7 +75,13 @@
     <string name="contact_text">聯繫方式</string>
     <string name="contact_tel_mail">請輸入手機/郵箱</string>
     <string name="item_list_text">商品列表</string>
+    <string name="item_content_text">商品详细</string>
     <string name="save_text">保存</string>
+    <string name="comment_text">评论</string>
+    <string name="send_text">评论</string>
+    <string name="settlement_sum_text">去結賬(?)</string>
+    <string name="all_clock_text">全選</string>
+    <string name="all_sum_text">總計：</string>
 
 
 </resources>

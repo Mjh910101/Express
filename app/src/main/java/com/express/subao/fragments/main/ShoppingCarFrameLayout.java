@@ -24,6 +24,8 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * *
  * * ┏┓      ┏┓
@@ -52,5 +54,15 @@ public class ShoppingCarFrameLayout extends BaseFragment {
 
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        context = getActivity();
+        View contactsLayout = inflater.inflate(R.layout.layout_shoppingcar, container,
+                false);
+        ViewUtils.inject(this, contactsLayout);
+
+        return contactsLayout;
+    }
 
 }

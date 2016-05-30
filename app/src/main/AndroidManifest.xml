@@ -153,6 +153,13 @@
         <activity
             android:name=".activitys.StoreItemListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.StoreItemContentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activitys.CommentsListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"  />
 
         <!--推送-->
         <service
