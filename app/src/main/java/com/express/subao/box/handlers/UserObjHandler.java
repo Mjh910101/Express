@@ -43,6 +43,7 @@ public class UserObjHandler {
         obj.setSessionToken(JsonHandle.getString(json, UserObj.SESSION_TOKEN));
         obj.setMobilePhoneNumber(JsonHandle.getString(json, UserObj.MOBILE));
         obj.setAvatar(JsonHandle.getJSON(json, UserObj.ACATAR));
+        obj.setNickname(JsonHandle.getString(json, UserObj.NICKNAME));
 
         return obj;
     }
@@ -73,6 +74,7 @@ public class UserObjHandler {
         SystemHandle.saveStringMessage(context, KEY + UserObj.USER_NAME, obj.getUsername());
         SystemHandle.saveStringMessage(context, KEY + UserObj.OBJECT_ID, obj.getObjectId());
         SystemHandle.saveStringMessage(context, KEY + UserObj.MOBILE, obj.getMobilePhoneNumber());
+        SystemHandle.saveStringMessage(context, KEY + UserObj.NICKNAME, obj.getNickname());
         saveUserAvatar(context, obj.getAvatar());
     }
 
@@ -92,10 +94,15 @@ public class UserObjHandler {
         SystemHandle.saveStringMessage(context, KEY + UserObj.OBJECT_ID, "");
         SystemHandle.saveStringMessage(context, KEY + UserObj.ACATAR, "");
         SystemHandle.saveStringMessage(context, KEY + UserObj.MOBILE, "");
+        SystemHandle.saveStringMessage(context, KEY + UserObj.NICKNAME, "");
     }
 
     public static String getUserName(Context context) {
         return SystemHandle.getString(context, KEY + UserObj.USER_NAME);
+    }
+
+    public static String getNickName(Context context) {
+        return SystemHandle.getString(context, KEY + UserObj.NICKNAME);
     }
 
     public static String getUserTel(Context context) {

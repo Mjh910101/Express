@@ -32,12 +32,22 @@ public class UserObj {
     public final static String OBJECT_ID = "objectId";
     public final static String MOBILE = "mobilePhoneNumber";
     public final static String ACATAR = "avatar";
+    public final static String NICKNAME = "nickname";
 
     private String sessionToken;
     private String username;
+    private String nickname;
     private String mobilePhoneNumber;
     private String objectId;
     private String avatar;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     public String getMobilePhoneNumber() {
         return mobilePhoneNumber;

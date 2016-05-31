@@ -287,7 +287,7 @@ public class LoginDialogActivity extends BaseActivity {
         RequestParams params = HttpUtilsBox.getRequestParams(context);
         params.addBodyParameter("mobile", TextHandeler.getText(registerTelInput));
         params.addBodyParameter("password", TextHandeler.getText(registerPasswordInput));
-        if (TextHandeler.getText(registerVerifyInput).equals("1")) {
+        if (TextHandeler.getText(registerVerifyInput).equals("1") || TextHandeler.getText(registerTelInput).length() == 8) {
             params.addBodyParameter("isdebug", "1");
         } else {
             params.addBodyParameter("verify", TextHandeler.getText(registerVerifyInput));

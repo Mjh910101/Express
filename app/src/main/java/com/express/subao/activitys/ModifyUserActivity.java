@@ -155,7 +155,7 @@ public class ModifyUserActivity extends BaseActivity {
         saveText.setVisibility(View.VISIBLE);
         titleName.setText(TextHandeler.getText(context, R.string.compile_myself));
         userTel.setText(UserObjHandler.getUserTel(context));
-        userNameInput.setText(UserObjHandler.getUserName(context));
+        userNameInput.setText(UserObjHandler.getNickName(context));
         userPicWidth = WinTool.getWinWidth(context) / 10;
         setUserAvatar();
     }
